@@ -6,6 +6,7 @@ interface Game{
     void dealer();
     void choice();
     void decision();
+    void compare();
     void initial();
 }
 
@@ -38,6 +39,7 @@ class Child implements Game{
             System.out.println("Dealers total is "+this.dealer_sum);
             System.out.println("Dealers turn completed");
             decision();
+            compare();
             choice();
         }
         else if(turn==1){
@@ -87,11 +89,17 @@ class Child implements Game{
     public void decision(){
         if(dealer_sum>16){
             System.out.println("\nYou Won the match!");
-            System.exit(dealer_sum);
+            System.exit(player_sum);
         }
         else if(player_sum>21){
             System.out.println("\nDealer Won the match!");
-            System.exit(player_sum);
+            System.exit(dealer_sum);
+        }
+    }
+    public void compare(){
+        if(this.dealer_sum>this.player_sum){
+            System.out.println("\nDealer Won the match!");
+            System.exit(dealer_sum);
         }
     }
     public void initial(){
