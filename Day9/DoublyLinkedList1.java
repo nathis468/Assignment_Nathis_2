@@ -134,13 +134,13 @@ class Implementation{
         Node f1=head;
         Node f2=head;
         int count=1;
-        while(f1!=null&&count!=val1)
+        while(f1!=null && count!=val1)
         {
             f1=f1.next;
             count++;
         }
         count=1;
-        while(f2!=null&&count!=val2)
+        while(f2!=null && count!=val2)
         {
             f2=f2.next;
             count++;
