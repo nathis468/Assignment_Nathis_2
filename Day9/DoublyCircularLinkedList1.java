@@ -146,6 +146,7 @@ class Implementation{
             curr.next=temp;
             curr=curr.prev;
         }
+        head.next=temp.prev;
         head=temp.prev;
         return head;
     }
@@ -193,30 +194,30 @@ class DoublyCircularLinkedList1{
         }   
         im.print(head);
 
-        System.out.println("Enter the element to be inserted : ");
-        int num=sc.nextInt();
-        System.out.println("Enter the position of the element to be inserted : ");
-        int pos=sc.nextInt();
-        head=im.insert_at_any_pos(head, num, pos);
-        im.print(head);
+        // System.out.println("Enter the element to be inserted : ");
+        // int num=sc.nextInt();
+        // System.out.println("Enter the position of the element to be inserted : ");
+        // int pos=sc.nextInt();
+        // head=im.insert_at_any_pos(head, num, pos);
+        // im.print(head);
 
-        System.out.println("Enter the element to be deleted : ");
-        int num1=sc.nextInt();
-        head=im.remove_element(head,num1);
-        im.print(head);
+        // System.out.println("Enter the element to be deleted : ");
+        // int num1=sc.nextInt();
+        // head=im.remove_element(head,num1);
+        // im.print(head);
 
-        System.out.println("Enter the element want to replace : ");
-        int num2=sc.nextInt();
-        System.out.println("Enter the element to be replaced of : ");
-        int num3=sc.nextInt();
-        head=im.replace(head, num2, num3);
-        im.print(head);
+        // System.out.println("Enter the element want to replace : ");
+        // int num2=sc.nextInt();
+        // System.out.println("Enter the element to be replaced of : ");
+        // int num3=sc.nextInt();
+        // head=im.replace(head, num2, num3);
+        // im.print(head);
 
-        System.out.println("Enter the element want to search : ");
-        int num4=sc.nextInt();
-        im.search_element(head, num4);
+        // System.out.println("Enter the element want to search : ");
+        // int num4=sc.nextInt();
+        // im.search_element(head, num4);
 
-        System.out.println("Before revesing the list : ");
+        System.out.println("Before reversing the list : ");
         im.print(head);
         head=im.reverse(head);
         System.out.println("After reversing the list : ");
