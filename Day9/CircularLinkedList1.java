@@ -44,32 +44,105 @@ class Implementation{
         }
         else{
             int count=1;
+            Node prev=null;
             Node curr=head;
             do{
                 if(count==pos){
-                    
+                    prev.next=temp;
+                    temp.next=curr;
+                    return;
                 }
+                prev=curr;
                 curr=curr.next;
                 count++;
             }
-            while(curr.next!=head);
+            while(curr!=head);
+            temp.next=curr.next;
+            curr.next=temp;
         }
     }
 
-    void remove_element(){
-
+    void remove_element(int num){
+        Node prev=null;
+        Node curr=head;
+        if(head.data==num){
+            do{
+                if(curr.next==head){
+                    curr.next=head.next;
+                    break;
+                }
+                curr=curr.next;
+            }
+            while(curr!=head);
+            head=head.next;
+            return;
+        }
+        do{
+            if(curr.data==num){
+                prev.next=curr.next;
+                return;
+            }
+            prev=curr;
+            curr=curr.next;
+        }
+        while(curr!=head);
     }
     
-    void replace(){
-
+    void replace(int num1,int num2){
+        Node temp=new Node(num2);
+        Node prev=null;
+        Node curr=head;
+        if(head.data==num1){
+            while(curr.next!=head){
+                curr=curr.next;
+            }
+            curr.next=temp;
+            temp.next=head.next;
+            head=temp;
+            return;
+        }
+        do{
+            if(curr.data==num1){
+                prev.next=temp;
+                temp.next=curr.next;
+                return;
+            }
+            prev=curr;
+            curr=curr.next;
+        }
+        while(curr!=head);
     }
 
     void reverse(){
-
+        if(head.next==head){
+            return;
+        }
+        Node prev=null;
+        Node curr=head;
+        do{
+            Node next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }   
+        while(curr!=head);
+        head.next=prev;
+        head=prev;
     }
 
-    void search(){
-
+    void search(int num){
+        Node curr=head;
+        int count=1;
+        do{
+            if(curr.data==num){
+                System.out.println("The element is present at position : "+count);
+                return;
+            }
+            curr=curr.next;
+            count++;
+        }
+        while(curr!=head);
+        System.out.println("The given element is not found in the list");
     }
 
     void print(){
@@ -96,7 +169,19 @@ public class CircularLinkedList1{
         }
         im.print();
         int num=sc.nextInt();
-        im.insert_at_any_pos(num,1);
+        int pos=sc.nextInt();
+        im.insert_at_any_pos(num,pos);
         im.print();
+        int num2=sc.nextInt();
+        im.remove_element(num2);
+        im.print();
+        int num3=sc.nextInt();
+        int num4=sc.nextInt();
+        im.replace(num3, num4);
+        im.print();
+        im.reverse();
+        im.print();
+        int num5=sc.nextInt();
+        im.search(num5);
     }
 }

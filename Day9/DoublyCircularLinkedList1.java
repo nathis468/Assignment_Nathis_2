@@ -16,86 +16,124 @@ class Implementation{
         Node temp=new Node(num);
         if(head==null){
             head=temp;
+            head.next=head;
         }
         else{
             Node curr=head;
-            while(curr.next!=null){
+            while(curr.next!=head){
                 curr=curr.next;
             }
             curr.next=temp;
             temp.prev=curr;
+            temp.next=head;
         }
         return head;
     }
     Node insert_at_any_pos(Node head,int num,int pos){
         Node temp=new Node(num);
         if(pos==1){
+            Node curr=head;
+            do{
+                curr=curr.next;
+            }
+            while(curr.next!=head);
             head.prev=temp;
             temp.next=head;
             head=temp;
+            curr.next=head;
         }
         else{
             int count=1;
             Node curr=head;
-            while(curr!=null){
-                if(count==pos){
-                    temp.prev=curr.prev;
-                    curr.prev.next=temp;
+            Node bef=null;
+            do{
+                if(pos==count){
+                    bef.next=temp;
+                    temp.prev=bef;
                     temp.next=curr;
                     curr.prev=temp;
+                    
                 }
+                bef=curr;
                 curr=curr.next;
-                count++;
             }
+            while(curr!=head);
+            bef.next=temp;
+            temp.prev=bef;
+            temp.next=head;
         }
         return head;
     }
     Node remove_element(Node head,int num){
-        if(head.data==num && head.next==null){
+        if(head.data==num && head.next==head){
             head=null;
         }
         else if(head.data==num){
+            Node curr=head;
+            do{
+                curr=curr.next;
+            }
+            while(curr.next!=head);
+            curr.next=head.next;
             head=head.next;
-            head.prev=null;
         }
         else{
             Node curr=head;
-            while(curr!=null){
+            do{
                 if(curr.data==num){
-                    if(curr.next==null){
-                        curr.prev.next=null;
+                    if(curr.next==head){
+                        curr.prev.next=head;
+                        break;
                     }
                     else{
                         curr.prev.next=curr.next;
                         curr.next.prev=curr.prev;
+                        break;
                     }
                 }
                 curr=curr.next;
             }
+            while(curr!=head);
+
         }
         return head;
     }
     Node replace(Node head,int num1,int num2){
         Node temp=new Node(num2);
-        if(head.data==num1 && head.next==null){
+        if(head.data==num1 && head.next==head){
             head=temp;
+            head.next=head;
         }
         else if(head.data==num1){
+            Node bef=null;
+            Node curr=head;
+            do{
+                bef=curr;
+                curr=curr.next;
+            }
+            while(curr!=head);
+            bef.next=temp;
             temp.next=head.next;
             head.next.prev=temp;
             head=temp;
         }
         else{
             Node curr=head;
-            while(curr!=null){
+            Node bef=null;
+            do{
                 if(curr.data==num1){
-                    curr.prev.next=temp;
-                    curr.next.prev=temp;
-                    temp.prev=curr.prev;
+                    temp.prev=bef;
                     temp.next=curr.next;
+                    bef.next=temp;
+                    if(curr.next!=head){
+                        curr.next.prev=temp;
+                    }
                 }
+                bef=curr;
                 curr=curr.next;
             }
+            while(curr!=head);
+            
         }
         return head;
     }
@@ -113,76 +151,34 @@ class Implementation{
     }
     void search_element(Node head,int num){
         int count=1;
-        if(head.data==num){
-            System.out.println("The gievn element present at position : "+count);
+        Node curr=head;
+        do{
+            if(curr.data==num){
+                System.out.println("The given element is present at position : "+count);
+                return;
+            }
+            count++;
+            curr=curr.next;
+        }
+        while(curr!=head);
+        System.out.println("The given element is not present inside the list");
+    }
+    void print(Node head){
+        if(head==null){
+            System.out.println("The list is empty");
             return;
         }
         Node curr=head;
-        while(curr!=null){
-            if(curr.data==num){
-                System.out.println("The gievn element present at position : "+count);
-                return;
-            }
-            curr=curr.next;
-            count++;
-        }
-        System.out.println("The given element is not present inside the list");
-    }
-
-    Node replaceElement(Node head,int val1,int val2)
-    {
-        Node f1=head;
-        Node f2=head;
-        int cnt=1;
-        while(f1!=null&&cnt!=val1)
-        {
-            f1=f1.next;
-            cnt++;
-        }
-        cnt=1;
-        while(f2!=null&&cnt!=val2)
-        {
-            f2=f2.next;
-            cnt++;
-        }
-        Node temp = new Node(f1.data);
-        temp.next = f1.next;
-        temp.prev = f1.prev;
-
-        f1.next = f2.next;
-        f1.prev = f2.prev;
-        f2.next = temp.next;
-        f2.prev = temp.prev;
-        if(f1.next!=null){
-            f1.next.prev = f1;
-        }
-        if(f1.prev!=null){
-            f1.prev.next = f1;
-        }
-        if(f2.prev!=null){
-            f2.prev.next = f2;
-        }
-        if(f2.next!=null){
-            f2.next.prev = f2;
-        }
-        if(val1==1){
-            head=f2;
-        }
-
-        return head;
-    }
-
-    void print(Node head){
-        Node curr=head;
-        while(curr!=null){
+        do{
             System.out.print(curr.data+" ");
             curr=curr.next;
         }
+        while(curr!=head);
         System.out.println();
     }
 }
 
-class DoublyLinkedList1{
+class DoublyCircularLinkedList1{
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         Implementation im=new Implementation();
@@ -197,33 +193,33 @@ class DoublyLinkedList1{
         }   
         im.print(head);
 
-        System.out.println("Enter the element to be inserted : ");
-        int num=sc.nextInt();
-        System.out.println("Enter the position of the element to be inserted : ");
-        int pos=sc.nextInt();
-        head=im.insert_at_any_pos(head, num, pos);
-        im.print(head);
+        // System.out.println("Enter the element to be inserted : ");
+        // int num=sc.nextInt();
+        // System.out.println("Enter the position of the element to be inserted : ");
+        // int pos=sc.nextInt();
+        // head=im.insert_at_any_pos(head, num, pos);
+        // im.print(head);
 
-        System.out.println("Enter the element to be deleted : ");
-        int num1=sc.nextInt();
-        head=im.remove_element(head,num1);
-        im.print(head);
+        // System.out.println("Enter the element to be deleted : ");
+        // int num1=sc.nextInt();
+        // head=im.remove_element(head,num1);
+        // im.print(head);
 
-        System.out.println("Enter the element want to replace : ");
-        int num2=sc.nextInt();
-        System.out.println("Enter the element to be replaced of : ");
-        int num3=sc.nextInt();
-        head=im.replace(head, num2, num3);
-        im.print(head);
+        // System.out.println("Enter the element want to replace : ");
+        // int num2=sc.nextInt();
+        // System.out.println("Enter the element to be replaced of : ");
+        // int num3=sc.nextInt();
+        // head=im.replace(head, num2, num3);
+        // im.print(head);
 
         System.out.println("Enter the element want to search : ");
         int num4=sc.nextInt();
         im.search_element(head, num4);
 
-        System.out.println("Before revesing the list : ");
-        im.print(head);
-        head=im.reverse(head);
-        System.out.println("After reversing the list : ");
-        im.print(head);
+        // System.out.println("Before revesing the list : ");
+        // im.print(head);
+        // head=im.reverse(head);
+        // System.out.println("After reversing the list : ");
+        // im.print(head);
     }
 }
