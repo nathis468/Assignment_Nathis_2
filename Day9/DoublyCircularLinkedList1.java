@@ -140,7 +140,7 @@ class Implementation{
     Node reverse(Node head){
         Node curr=head;
         Node temp=null;
-        while(curr!=null){
+        while(curr!=head){
             temp=curr.prev;   
             curr.prev=curr.next;
             curr.next=temp;
