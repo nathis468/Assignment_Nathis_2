@@ -52,8 +52,9 @@ class Implementation{
                     temp.prev=bef;
                     temp.next=curr;
                     curr.prev=temp;
-                    
+                    return head;
                 }
+                count++;
                 bef=curr;
                 curr=curr.next;
             }
@@ -138,14 +139,18 @@ class Implementation{
         return head;
     }
     Node reverse(Node head){
+        if(head.next==head){
+            return head;
+        }
         Node curr=head;
         Node temp=null;
-        while(curr!=head){
+        do{
             temp=curr.prev;   
             curr.prev=curr.next;
             curr.next=temp;
             curr=curr.prev;
         }
+        while(curr!=head);
         head.next=temp.prev;
         head=temp.prev;
         return head;
@@ -183,44 +188,60 @@ class DoublyCircularLinkedList1{
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         Implementation im=new Implementation();
-        Node head=null;
-        System.out.println("Enter the total inputs : ");
-        int n=sc.nextInt();
-        System.out.println("Enter the elements : ");
-        while(n>0){
-            int num=sc.nextInt();
-            head=im.insert_end(head,num);
-            n--;
-        }   
-        im.print(head);
+        Node head=null; 
+         
+        int flag=0;
+        while(flag==0){
+            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
+            int input=sc.nextInt();
+            switch(input){
+                case 1:
+                    System.out.println("Enter the element : ");
+                    int num=sc.nextInt();
+                    head=im.insert_end(head,num);
+                    break;
+                
+                case 2:
+                    System.out.println("Enter the element to be inserted : ");
+                    int num1=sc.nextInt();
+                    System.out.println("Enter the position of the element to be inserted : ");
+                    int pos=sc.nextInt();
+                    head=im.insert_at_any_pos(head, num1, pos);
+                    break;
+                
+                case 3:
+                    System.out.println("Enter the element to be deleted : ");
+                    int num2=sc.nextInt();
+                    head=im.remove_element(head,num2);
+                    break;          
 
-        // System.out.println("Enter the element to be inserted : ");
-        // int num=sc.nextInt();
-        // System.out.println("Enter the position of the element to be inserted : ");
-        // int pos=sc.nextInt();
-        // head=im.insert_at_any_pos(head, num, pos);
-        // im.print(head);
 
-        // System.out.println("Enter the element to be deleted : ");
-        // int num1=sc.nextInt();
-        // head=im.remove_element(head,num1);
-        // im.print(head);
+                case 4:
+                    System.out.println("Enter the element want to replace : ");
+                    int num3=sc.nextInt();
+                    System.out.println("Enter the element to be replaced of : ");
+                    int num4=sc.nextInt();
+                    head=im.replace(head, num3, num4);
+                    break;
 
-        // System.out.println("Enter the element want to replace : ");
-        // int num2=sc.nextInt();
-        // System.out.println("Enter the element to be replaced of : ");
-        // int num3=sc.nextInt();
-        // head=im.replace(head, num2, num3);
-        // im.print(head);
+                case 5:
+                    head=im.reverse(head);
+                    break;
 
-        // System.out.println("Enter the element want to search : ");
-        // int num4=sc.nextInt();
-        // im.search_element(head, num4);
+                case 6:
+                    System.out.println("Enter the element want to search : ");
+                    int num5=sc.nextInt();
+                    im.search_element(head, num5);
+                    break;
 
-        System.out.println("Before reversing the list : ");
-        im.print(head);
-        head=im.reverse(head);
-        System.out.println("After reversing the list : ");
-        im.print(head);
+                case 7:
+                    im.print(head);
+                    break;
+
+                case 8:
+                    flag=1;
+            }
+        }
+
     }
 }

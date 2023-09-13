@@ -12,7 +12,7 @@ class Node{
 class Implementation{
     Node head;
 
-    void insert_at_end(int num){
+    void insert_end(int num){
         Node temp=new Node(num);
         if(head==null){
             head=temp;
@@ -130,7 +130,7 @@ class Implementation{
         head=prev;
     }
 
-    void search(int num){
+    void search_element(int num){
         Node curr=head;
         int count=1;
         do{
@@ -162,26 +162,79 @@ public class CircularLinkedList1{
         Scanner sc=new Scanner(System.in);
         Implementation im=new Implementation();
         Node head=null;
-        int n=sc.nextInt();
-        while(n>0){
-            im.insert_at_end(sc.nextInt());
-            n--;
+        // int n=sc.nextInt();
+        // while(n>0){
+        //     im.insert_at_end(sc.nextInt());
+        //     n--;
+        // }
+        // im.print();
+        // int num=sc.nextInt();
+        // int pos=sc.nextInt();
+        // im.insert_at_any_pos(num,pos);
+        // im.print();
+        // int num2=sc.nextInt();
+        // im.remove_element(num2);
+        // im.print();
+        // int num3=sc.nextInt();
+        // int num4=sc.nextInt();
+        // im.replace(num3, num4);
+        // im.print();
+        // im.reverse();
+        // im.print();
+        // int num5=sc.nextInt();
+        // im.search(num5);
+
+        int flag=0;
+        while(flag==0){
+            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
+            int input=sc.nextInt();
+            switch(input){
+                case 1:
+                    System.out.println("Enter the element : ");
+                    int num=sc.nextInt();
+                    im.insert_end(num);
+                    break;
+                
+                case 2:
+                    System.out.println("Enter the element to be inserted : ");
+                    int num1=sc.nextInt();
+                    System.out.println("Enter the position of the element to be inserted : ");
+                    int pos=sc.nextInt();
+                    im.insert_at_any_pos(num1, pos);
+                    break;
+                
+                case 3:
+                    System.out.println("Enter the element to be deleted : ");
+                    int num2=sc.nextInt();
+                    im.remove_element(num2);
+                    break;          
+
+
+                case 4:
+                    System.out.println("Enter the element want to replace : ");
+                    int num3=sc.nextInt();
+                    System.out.println("Enter the element to be replaced of : ");
+                    int num4=sc.nextInt();
+                    im.replace(num3, num4);
+                    break;
+
+                case 5:
+                    im.reverse();
+                    break;
+
+                case 6:
+                    System.out.println("Enter the element want to search : ");
+                    int num5=sc.nextInt();
+                    im.search_element(num5);
+                    break;
+
+                case 7:
+                    im.print();
+                    break;
+
+                case 8:
+                    flag=1;
+            }
         }
-        im.print();
-        int num=sc.nextInt();
-        int pos=sc.nextInt();
-        im.insert_at_any_pos(num,pos);
-        im.print();
-        int num2=sc.nextInt();
-        im.remove_element(num2);
-        im.print();
-        int num3=sc.nextInt();
-        int num4=sc.nextInt();
-        im.replace(num3, num4);
-        im.print();
-        im.reverse();
-        im.print();
-        int num5=sc.nextInt();
-        im.search(num5);
     }
 }

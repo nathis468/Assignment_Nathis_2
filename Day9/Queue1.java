@@ -39,12 +39,12 @@ class Implementation{
         }
 	}
 
-    int peek(){
+    void peek(){
         if(front==null){
-            return -1;
+            System.out.println("Queue is empty");
         }
         else{
-            return front.data;
+            System.out.println("Peek element is : "+front.data);
         }
     }
 
@@ -65,21 +65,32 @@ class Queue1 {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         Implementation im=new Implementation();
-        int n=sc.nextInt();
-        while(n>0){
-            im.enqueue(sc.nextInt());
-            n--;
+
+        int flag=0;
+        while(flag==0){
+            System.out.println("\nEnter your choice : \n1.Enqueue the element \n2.Dequeue the element \n3.Display peek element \n4.Print the Queue \n5.Exit \n");
+            int input=sc.nextInt();
+            switch(input){
+                case 1:
+                    im.enqueue(sc.nextInt());
+                    break;
+
+                case 2:
+                    im.dequeue();
+                    break;
+
+                case 3:
+                    im.peek();
+                    break;
+
+                case 4:
+                    im.print();
+                    break;
+
+                case 5:
+                    flag=1;
+            }
         }
-
-        im.print();
-
-        System.out.println(im.peek());
-
-        System.out.println(im.dequeue());
-
-        System.out.println(im.peek());
-
-        im.print();
     }
 }
 
