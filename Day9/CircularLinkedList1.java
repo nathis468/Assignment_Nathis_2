@@ -31,6 +31,11 @@ class Implementation{
 
     void insert_at_any_pos(int num,int pos){
         Node temp=new Node(num);
+        if(head==null){
+            head=temp;
+            head.next=head;
+            return;
+        }
         if(pos==1){
             Node curr=head;
             do{
