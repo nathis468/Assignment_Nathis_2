@@ -611,6 +611,40 @@ class Implementation{
         return;
     }
 
+    Node swap_elements(Node head,int val1,int val2){
+        if (val1 == val2)
+            return head;
+        Node curr1 = null, prev1 = head;
+        while (prev1 != null && prev1.data != val1) {
+            curr1 = prev1;
+            prev1 = prev1.next;
+        }
+ 
+        Node prev2 = null, curr2 = head;
+        while (curr2 != null && curr2.data != val2) {
+            prev2 = curr2;
+            curr2 = curr2.next;
+        }
+ 
+        if (prev1 == null || curr2 == null)
+            return head;
+ 
+        if (curr1 != null)
+            curr1.next = curr2;
+        else
+            head = curr2;
+ 
+        if (prev2 != null)
+            prev2.next = prev1;
+        else 
+            head = prev1;
+ 
+        Node temp = prev1.next;
+        prev1.next = curr2.next;
+        curr2.next = temp;
+        return head;
+    }
+
     void print(Node head){
         Node curr=head;
         while(curr!=null){
@@ -629,7 +663,7 @@ class SinglyLinkedList1{
 
         int flag=0;
         while(flag==0){
-            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
+            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8. Swap elements \n9.Exit \n");
             int input=sc.nextInt();
             switch(input){
                 case 1:
@@ -676,6 +710,13 @@ class SinglyLinkedList1{
                     break;
 
                 case 8:
+                    System.out.println("Enter the positions want to swap : ");
+                    int val1=sc.nextInt();
+                    int val2=sc.nextInt();
+                    im.swap_elements(head,val1,val2);
+                    break;
+
+                case 9:
                     flag=1;
             }
         }

@@ -129,46 +129,38 @@ class Implementation{
         System.out.println("The given element is not present inside the list");
     }
 
-    Node replaceElement(Node head,int val1,int val2)
+    Node swap_elements(Node head,int val1,int val2)
     {
-        Node f1=head;
-        Node f2=head;
-        int count=1;
-        while(f1!=null && count!=val1)
-        {
-            f1=f1.next;
-            count++;
+        if (val1 == val2)
+            return head;
+        Node curr1 = null, prev1 = head;
+        while (prev1 != null && prev1.data != val1) {
+            curr1 = prev1;
+            prev1 = prev1.next;
         }
-        count=1;
-        while(f2!=null && count!=val2)
-        {
-            f2=f2.next;
-            count++;
+ 
+        Node prev2 = null, curr2 = head;
+        while (curr2 != null && curr2.data != val2) {
+            prev2 = curr2;
+            curr2 = curr2.next;
         }
-        Node temp = new Node(f1.data);
-        temp.next = f1.next;
-        temp.prev = f1.prev;
-
-        f1.next = f2.next;
-        f1.prev = f2.prev;
-        f2.next = temp.next;
-        f2.prev = temp.prev;
-        if(f1.next!=null){
-            f1.next.prev = f1;
-        }
-        if(f1.prev!=null){
-            f1.prev.next = f1;
-        }
-        if(f2.prev!=null){
-            f2.prev.next = f2;
-        }
-        if(f2.next!=null){
-            f2.next.prev = f2;
-        }
-        if(val1==1){
-            head=f2;
-        }
-
+ 
+        if (prev1 == null || curr2 == null)
+            return head;
+ 
+        if (curr1 != null)
+            curr1.next = curr2;
+        else
+            head = curr2;
+ 
+        if (prev2 != null)
+            prev2.next = prev1;
+        else 
+            head = prev1;
+ 
+        Node temp = prev1.next;
+        prev1.next = curr2.next;
+        curr2.next = temp;
         return head;
     }
 
@@ -229,7 +221,7 @@ class DoublyLinkedList1{
         int flag=0;
 
         while(flag==0){
-            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
+            System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Swap elements \n9.Exit \n");
             int input=sc.nextInt();
             switch(input){
                 case 1:
@@ -276,6 +268,13 @@ class DoublyLinkedList1{
                     break;
 
                 case 8:
+                    System.out.println("Enter the positions want to swap : ");
+                    int val1=sc.nextInt();
+                    int val2=sc.nextInt();
+                    im.swap_elements(head,val1,val2);
+                    break;
+
+                case 9:
                     flag=1;
             }
         }
