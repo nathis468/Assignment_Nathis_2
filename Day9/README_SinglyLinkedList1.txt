@@ -246,7 +246,7 @@ Enter your choice :
 6.Search an element 
 7.Print the list 
 8. Swap elements 
-9.Exit 
+9.Exit
 
 7
 50 10 70 20 40 
