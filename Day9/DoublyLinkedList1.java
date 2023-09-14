@@ -144,47 +144,8 @@ class DoublyLinkedList1{
         Scanner sc=new Scanner(System.in);
         Implementation im=new Implementation();
         Node head=null;
-        // System.out.println("Enter the total inputs : ");
-        // int n=sc.nextInt();
-        // System.out.println("Enter the elements : ");
-        // while(n>0){
-        //     int num=sc.nextInt();
-        //     head=im.insert_end(head,num);
-        //     n--;
-        // }   
-        // im.print(head);
-
-        // System.out.println("Enter the element to be inserted : ");
-        // int num=sc.nextInt();
-        // System.out.println("Enter the position of the element to be inserted : ");
-        // int pos=sc.nextInt();
-        // head=im.insert_at_any_pos(head, num, pos);
-        // im.print(head);
-
-        // System.out.println("Enter the element to be deleted : ");
-        // int num1=sc.nextInt();
-        // head=im.remove_element(head,num1);
-        // im.print(head);
-
-        // System.out.println("Enter the element want to replace : ");
-        // int num2=sc.nextInt();
-        // System.out.println("Enter the element to be replaced of : ");
-        // int num3=sc.nextInt();
-        // head=im.replace(head, num2, num3);
-        // im.print(head);
-
-        // System.out.println("Enter the element want to search : ");
-        // int num4=sc.nextInt();
-        // im.search_element(head, num4);
-
-        // System.out.println("Before revesing the list : ");
-        // im.print(head);
-        // head=im.reverse(head);
-        // System.out.println("After reversing the list : ");
-        // im.print(head);
 
         int flag=0;
-
         while(flag==0){
             System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
             int input=sc.nextInt();

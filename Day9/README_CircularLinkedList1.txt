@@ -93,9 +93,9 @@ Enter your choice :
 
 2
 Enter the element to be inserted : 
-56
+54
 Enter the position of the element to be inserted : 
-2
+3
 
 Enter your choice : 
 1.Add element at the end 
@@ -108,7 +108,7 @@ Enter your choice :
 8.Exit 
 
 7
-10 56 20 30 40 50 
+10 20 54 30 40 50 
 
 Enter your choice : 
 1.Add element at the end 
@@ -122,7 +122,7 @@ Enter your choice :
 
 3
 Enter the element to be deleted : 
-56
+54
 
 Enter your choice : 
 1.Add element at the end 
@@ -149,7 +149,7 @@ Enter your choice :
 
 4
 Enter the element want to replace : 
-40
+10
 Enter the element to be replaced of : 
 90
 
@@ -164,7 +164,7 @@ Enter your choice :
 8.Exit 
 
 7
-10 20 30 90 50 
+90 20 30 40 50 
 
 Enter your choice : 
 1.Add element at the end 
@@ -189,7 +189,7 @@ Enter your choice :
 8.Exit 
 
 7
-50 90 30 20 10 
+50 40 30 20 90 
 
 Enter your choice : 
 1.Add element at the end 
@@ -203,8 +203,8 @@ Enter your choice :
 
 6
 Enter the element want to search : 
-10
-The gievn element present at position : 5
+30
+The element is present at position : 3
 
 Enter your choice : 
 1.Add element at the end 

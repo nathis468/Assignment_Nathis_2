@@ -162,28 +162,7 @@ public class CircularLinkedList1{
         Scanner sc=new Scanner(System.in);
         Implementation im=new Implementation();
         Node head=null;
-        // int n=sc.nextInt();
-        // while(n>0){
-        //     im.insert_at_end(sc.nextInt());
-        //     n--;
-        // }
-        // im.print();
-        // int num=sc.nextInt();
-        // int pos=sc.nextInt();
-        // im.insert_at_any_pos(num,pos);
-        // im.print();
-        // int num2=sc.nextInt();
-        // im.remove_element(num2);
-        // im.print();
-        // int num3=sc.nextInt();
-        // int num4=sc.nextInt();
-        // im.replace(num3, num4);
-        // im.print();
-        // im.reverse();
-        // im.print();
-        // int num5=sc.nextInt();
-        // im.search(num5);
-
+        
         int flag=0;
         while(flag==0){
             System.out.println("\nEnter your choice : \n1.Add element at the end \n2.Add element at any position \n3.Remove element at any position \n4.Replace an element \n5.Reverse a list \n6.Search an element \n7.Print the list \n8.Exit \n");
