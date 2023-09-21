@@ -14,19 +14,17 @@ class TreeNode{
 }
 
 class Implementation{
-    
     ArrayList<Integer> traversal(TreeNode root,ArrayList<Integer> al){
         Queue<TreeNode> q=new LinkedList<>();
-
         q.add(root);
         while(!q.isEmpty()){
-            TreeNode temp=q.poll();
-            al.add(temp.data);
-            if(temp.left!=null){
-                q.add(temp.left);
+            TreeNode curr=q.poll();
+            al.add(curr.data);
+            if(curr.left!=null){
+                q.add(curr.left);
             }
-            if(temp.right!=null){
-                q.add(temp.right);
+            if(curr.right!=null){
+                q.add(curr.right);
             }
         }
         return al;
