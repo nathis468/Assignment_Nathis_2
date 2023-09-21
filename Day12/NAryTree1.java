@@ -40,20 +40,38 @@ class Implementation{
     void traversal_bfs(TreeNode curr){
         Queue<TreeNode> q=new LinkedList<>();
         q.offer(curr);
+        System.out.print(curr.data+" ");
         while(!q.isEmpty()){
             TreeNode temp=q.poll();
-            System.out.println("\nChild node for "+temp.data+" are :");
+            // System.out.println("\nChild node for "+temp.data+" are :");
             int flag=0;
             for(int i=0;i<temp.al.size();i++){
                 flag=1;
-                System.out.println(temp.al.get(i).data);
+                System.out.print(temp.al.get(i).data+" ");
                 q.add(temp.al.get(i));
-            } 
-            if(flag==0){
-                System.out.println("Null");
             }
         }
     }
+    
+    // void remove_at_any_pos(TreeNode curr){
+    //     while(){
+
+    //     }
+    // }
+
+    int flag=0;
+    int find_height(TreeNode curr){
+        if (curr == null) {
+            return 0;
+        }
+        int maxHeight = 0;
+        for (TreeNode val : curr.al) {
+            int childHeight = find_height(val);
+            maxHeight = Math.max(maxHeight, childHeight);
+        }
+        return maxHeight + 1;
+    }
+
     void traversal_dfs_preorder(TreeNode curr){
         System.out.print(curr.data+" ");
         if(curr.al.size()!=0){
@@ -66,10 +84,17 @@ class Implementation{
     
 class NAryTree1 {
     public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
         TreeNode root=null;
         Implementation im=new Implementation();
         root=im.insert();
+
+        System.out.println("\nPrinting the tree in BFS order : ");
         im.traversal_bfs(root);
+
+        System.out.println("\nPrinting the tree in DFS order : ");
         im.traversal_dfs_preorder(root);
+
+        System.out.println("Height of the N-Ary tree is : "+im.find_height(root));
     }
 }
