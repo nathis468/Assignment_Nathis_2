@@ -2,13 +2,18 @@ import java.util.*;
 
 class Sort{
     void bubble_sort_reverse(int arr[]){
+        boolean swap=false;
 	    for(int i=0;i<arr.length;i++){
-            for(int j=arr.length-1;j>0+i;j--){
+            for(int j=arr.length-1;j>i;j--){
                 if(arr[j]<arr[j-1]){
                     int temp=arr[j];
                     arr[j]=arr[j-1];
                     arr[j-1]=temp;
+                    swap=true;
                 }
+            }
+            if(swap==false){
+                break;
             }
         }
 	}
