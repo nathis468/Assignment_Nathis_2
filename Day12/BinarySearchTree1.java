@@ -30,14 +30,49 @@ class Implementation{
         }
         return root;
     }
-    void traversal(TreeNode curr){
+
+    void pre_order_traversal(TreeNode curr){
         if(curr==null){
             return;
         }
-        traversal(curr.left);
         System.out.print(curr.data+" ");
-        traversal(curr.right);
+        pre_order_traversal(curr.left);
+        pre_order_traversal(curr.right);
     }
+
+    void in_order_traversal(TreeNode curr){
+        if(curr==null){
+            return;
+        }
+        in_order_traversal(curr.left);
+        System.out.print(curr.data+" ");
+        in_order_traversal(curr.right);
+    }
+
+    void post_order_traversal(TreeNode curr){
+        if(curr==null){
+            return;
+        }
+        post_order_traversal(curr.left);
+        post_order_traversal(curr.right);
+        System.out.print(curr.data+" ");
+    }
+
+    void level_order_traversal(TreeNode curr){
+        Queue<TreeNode> q=new LinkedList<>();
+        q.offer(curr);
+        while(!q.isEmpty()){
+            TreeNode temp=q.poll();
+            System.out.print(temp.data+" ");
+            if(temp.left!=null){
+                q.offer(temp.left);
+            }
+            if(temp.right!=null){
+                q.offer(temp.right);
+            }
+        }
+    }
+    
     TreeNode binary_search(TreeNode root,int target){
         if(root==null){
             return root;
@@ -57,57 +92,51 @@ public class BinarySearchTree1 {
         Scanner sc=new Scanner(System.in);
         TreeNode root=null;
         Implementation im=new Implementation();
-        // int num1=sc.nextInt();
-        // root=im.insert(root,num1);
-        // int num2=sc.nextInt();
-        // root=im.insert(root,num2);
-        // int num3=sc.nextInt();
-        // root=im.insert(root,num3);
-        // int num4=sc.nextInt();
-        // root=im.insert(root,num4);
-        // int num5=sc.nextInt();
-        // root=im.insert(root,num5);
-        // int num6=sc.nextInt();
-        // root=im.insert(root,num6);
-        // int num7=sc.nextInt();
-        // root=im.insert(root,num7);
 
-        System.out.println("Enter the root element : ");
-        root=im.insert(root,sc.nextInt());
-        System.out.println("Do you want to insert element ?");
-        Boolean choice=sc.nextBoolean();
-        while(choice){
-            System.out.println("Enter the element : ");
-            root=im.insert(root,sc.nextInt());
-            System.out.println("Do you want to insert element ?");
-            choice=sc.nextBoolean();
-        }
-        im.traversal(root);
 
-        System.out.println("Enter the element to search");
-        int target=sc.nextInt();
-        root=im.binary_search(root,target);
-        if(root!=null){
-            System.out.println("The given element is found in the tree");
-        }
-        else{
-            System.out.println("The given element is not found in the tree");
-        }
+        
+        while(true){
+            System.out.println("\nEnter your choice \n1.Add an element \n2.Preorder traversal \n3.Inorder traversal \n4.PostOrder traversal \n5.LevelOrder traversal \n6.Search an element \n7.Exit");
+            int choice=sc.nextInt();
 
-        while(choice){
-            System.out.println("Enter your choice \n1.Add an element \n2.Preorder traversal \n3.Inorder traversal \n4.PostOrder traversal \n5.")
-            case 1:
+            switch(choice){
+                case 1:
+                    System.out.println("Enter the element : ");
+                    root=im.insert(root,sc.nextInt());
+                    break;
+                
+                case 2:
+                    im.pre_order_traversal(root);
+                    break;
+                
+                case 3:
+                    im.in_order_traversal(root);
+                    break;
+                
+                case 4:
+                    im.post_order_traversal(root);
+                    break;
+                
+                case 5:
+                    im.level_order_traversal(root);
+                    break;
+                
+                case 6:
+                    System.out.println("Enter the element to search");
+                    int target=sc.nextInt();
+                    root=im.binary_search(root,target);
+                    if(root!=null){
+                        System.out.println("The given element is found in the tree");
+                    }
+                    else{
+                        System.out.println("The given element is not found in the tree");
+                    }
+                    break;
 
-            case 2:
+                case 7:
+                    System.exit(0);
 
-            case 3:
-
-            case 4:
-
-            case 5:
-
-            case 6:
-                System.exit();
+            }
         }
     }
 }
