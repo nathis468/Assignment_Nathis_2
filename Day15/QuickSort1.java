@@ -1,4 +1,4 @@
-// by taking last element as pivot
+// by taking last index as pivot
 
 import java.util.Scanner;
 
