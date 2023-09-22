@@ -43,7 +43,6 @@ class Implementation{
         System.out.print(curr.data+" ");
         while(!q.isEmpty()){
             TreeNode temp=q.poll();
-            // System.out.println("\nChild node for "+temp.data+" are :");
             int flag=0;
             for(int i=0;i<temp.al.size();i++){
                 flag=1;
@@ -53,13 +52,6 @@ class Implementation{
         }
     }
     
-    // void remove_at_any_pos(TreeNode curr){
-    //     while(){
-
-    //     }
-    // }
-
-    int flag=0;
     int find_height(TreeNode curr){
         if (curr == null) {
             return 0;
